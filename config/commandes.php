@@ -1,9 +1,8 @@
 <?php
-
-	function ajouter($image, $nom, $prix, $desc) {
+	function ajouter($image, $nom, $prix, $description) {
 		if (require("connexion.php")) {
 			$req = $access->prepare("INSERT INTO produits (image, nom, prix, description) VALUES ($image, $nom, 
-				$prix, $desc)");
+				$prix, $description)");
 			$req->execute(array($image, $nom, $prix, $desc));
 			$req->closeCursor();
 		}
@@ -16,6 +15,13 @@
 			$data = $req->fetchAll(PDO::FETCH_OBJ);
 			$req->closeCursor();
 			return $data;
+		}
+	}
+
+	function supprimer($id){
+		if (require("connexion.php")) {
+			$req = $access->prepare("DELETE * FROM produits WHERE id=?");
+			$req->execute(array($id));
 		}
 	}
 
