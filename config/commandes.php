@@ -1,9 +1,12 @@
 <?php
 	function ajouter($image, $nom, $prix, $description) {
 		if (require("connexion.php")) {
-			$req = $access->prepare("INSERT INTO produits (image, nom, prix, description) VALUES ($image, $nom, 
-				$prix, $description)");
-			$req->execute(array($image, $nom, $prix, $desc));
+			$req = $access->prepare("INSERT INTO produits (image, nom, prix, description) VALUES (:image, :nom, 
+				:prix, :description)");
+			$req->execute(array(":image" 		=> $image,
+								":nom" 			=> $nom,
+								":prix" 		=> $prix,
+								":description" 	=> $description));
 			$req->closeCursor();
 		}
 	}

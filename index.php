@@ -167,8 +167,7 @@
         <div class="col-sm-4 offset-md-1 py-4">
           <h4>Connexion</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Se connecter</a></li>
-            <li><a href="#" class="text-white">S'inscrire</a></li>
+            <li><a href="admin/index.php" class="text-white">Se connecter</a></li>
           </ul>
         </div>
       </div>
