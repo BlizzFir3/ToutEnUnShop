@@ -1,5 +1,6 @@
 <?php
-	if (!isset($_SESSION["zWupjTBoui6o91iNt"]) and !empty($_SESSION["zWupjTBoui6o91iNt"])){
+	session_start();
+	if (!isset($_SESSION["zWupjTBoui6o91iNt"]) || empty($_SESSION["zWupjTBoui6o91iNt"])){
 		header("Location: ../login.php");
 	}
 	require("../config/commandes.php");

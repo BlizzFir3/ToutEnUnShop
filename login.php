@@ -187,7 +187,7 @@
 	if(isset($_GET['erreur'])){
 		$err = $_GET['erreur'];
 		if($err==1 || $err==2)
-		echo "<p style='color:red; display: flex; align-items: center; justify-content: center; margin: 5% 0;'>Utilisateur ou mot de passe incorrect</p>";
+		echo "<p style='color:red; display: flex; align-items: center; justify-content: center; margin: 5% 0;'>Email ou mot de passe incorrect</p>";
 		}
 
 	?>

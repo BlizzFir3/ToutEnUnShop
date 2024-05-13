@@ -20,7 +20,7 @@ if(isset($_POST['email']) && isset($_POST['mdp'])) {
 		$reponse 		= mysqli_fetch_array($exec_requete);
 		$count 			= $reponse['count(*)'];
 		if($count!=0) { // nom d'utilisateur et mot de passe correctes
-			$_SESSION['zWupjTBoui6o91iNt'] = $pseudo;
+			$_SESSION['zWupjTBoui6o91iNt'] = array($pseudo, $email, $mdp);
 			header('Location: ../admin/index.php');
 		} else {
 			header('Location: ../login.php?erreur=1'); // utilisateur ou mot de passe incorrect
