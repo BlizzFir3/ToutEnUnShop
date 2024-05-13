@@ -40,4 +40,21 @@
 		}
 	}*/
 
+	function getAdmin($email, $mdp) {
+		if (require("connexion.php")) {
+			$req = $access->prepare("SELECT * FROM admin WHERE email = :email AND mdp = :mdp");
+			$req->execute(array(":email" 	=> $email,
+								":mdp" 		=> $mdp));
+			$req->closeCursor();
+
+			if ($req->rowCount() == 1) {
+				$data = $req->fetch();
+
+				return $data;
+			} else {
+				return false;
+			}
+		}
+	}
+
 ?>

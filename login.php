@@ -1,5 +1,7 @@
 <?php
-
+	session_start();
+	$id_session = session_id();
+	require("config/commandes.php");
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +15,8 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-	<script src="color-modes.js"></script>
+	<script src="assets/js/color-modes.js"></script>
+	<link href="assets/css/sign-in.css" rel="stylesheet">
 </head>
 <body>
 
@@ -99,7 +102,7 @@
       }
     </style>
 
-    <link href="sign-in.css" rel="stylesheet">
+
   </head>
   <body class="d-flex align-items-center py-4 bg-body-tertiary">
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -153,29 +156,42 @@
       </ul>
     </div>
 
-    
 <main class="form-signin w-100 m-auto">
-  <form>
+  <form method="post">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
       <label for="floatingInput">Addresse e-mail</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" name="mdp" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Mot de Passe</label>
     </div>
-
-    <div class="form-check text-start my-3">
-      <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-      <label class="form-check-label" for="flexCheckDefault">
-        Se souvenir de moi
-      </label>
-    </div>
-    <button class="btn btn-primary w-100 py-2" type="submit">Connexion</button>
+	<br />
+    <button class="btn btn-primary w-100 py-2" name="envoyer" type="submit">Connexion</button>
   </form>
 </main>
 
 </body>
 </html>
+
+<?php 
+if(isset($_POST['envoyer'])) {
+	if(!empty($_POST['email']) and !empty($_POST['mdp'])) {
+		$email 		= htmlspecialchars($_POST['email']);
+		$password 	= htmlspecialchars($_POST['mdp']);
+
+		$admin = getAdmin($email, $password);
+
+		if($admin){
+			$_SESSION['zWupjTBoui6o91iNt'] = $admin;
+
+			header("Location: admin/");
+		} else {
+			echo "Probleme de connexion";
+		}
+	} 
+}
+
+?>
