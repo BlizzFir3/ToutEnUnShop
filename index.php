@@ -14,7 +14,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-	<script src="color-modes.js"></script>
+	<script src="assets/js/color-modes.js"></script>
 
 
     <style>
@@ -98,6 +98,26 @@
 	  .bold {
 		font-weight: bold;
 	  }
+
+	  .box {
+	  	display: flex;
+  	  	align-items: center;
+  	  	justify-content: space-around;
+  		flex-wrap: wrap;
+	  }
+
+	  .box :first-child {
+	  align-self: center;
+	  }
+	  	.col-container {
+		display: table; /* Make the container element behave like a table */
+		width: 100%; /* Set full-width to expand the whole page */
+		}
+		.stretch {
+			display: flex;
+			align-items: stretch;
+		}
+
     </style>
 
     
@@ -210,8 +230,8 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
-          <h4>About</h4>
-          <p class="text-body-secondary">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+          <h4>A propos</h4>
+          <p class="text-body-secondary">ToutEnUnShop est un site web d'e-commerce qui vend toute sorte d'article, de la paire de chaussure a la machine a raclette.</p>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
           <h4>Connexion</h4>
@@ -238,25 +258,25 @@
 <main>
 
   <div class="album py-5 bg-body-tertiary">
-    <div class="container">
+    <div class="container col-container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 	  	<?php foreach($mesProduits as $unProduit): ?>
-			<div class="col">
-			<div class="card shadow-sm">
-				<title><?= $unProduit->nom ?></title>
-				<img src="<?= $unProduit->image ?>" width="200" height="200"/>
-				<div class="card-body">
-				<p class="bold"><?= $unProduit->nom ?></p>
-				<p class="card-text"><?= substr($unProduit->description, 0, 70) ?>...</p>
-				<div class="d-flex justify-content-between align-items-center">
-					<div class="btn-group">
-					<button type="button" class="btn btn-sm btn-outline-secondary">Acheter</button>
+			<div class="stretch">
+				<div class="card shadow-sm box col" style="margin: 0.2rem; ">
+					<title><?= $unProduit->nom ?></title>
+					<img src="<?= $unProduit->image ?>" width="200" height="200"/>
+					<div class="card-body">
+					<p class="bold"><?= $unProduit->nom ?></p>
+					<p class="card-text" style="align-items: center"><?= substr($unProduit->description, 0, 70) ?>...</p>
+					<div class="d-flex justify-content-between align-items-center"  style="display: flex; align-content: flex-end;">
+						<div class="btn-group">
+						<button type="button" class="btn btn-sm btn-outline-secondary">Acheter</button>
+						</div>
+						<small class="text-body-secondary"><?= $unProduit->prix ?> €</small>
 					</div>
-					<small class="text-body-secondary"><?= $unProduit->prix ?> €</small>
+					</div>
 				</div>
-				</div>
-			</div>
 			</div>
 	  	<?php endforeach; ?>
       </div>
