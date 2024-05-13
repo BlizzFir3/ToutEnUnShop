@@ -168,7 +168,30 @@
       <input type="password" name="mdp" class="form-control" id="floatingPassword" placeholder="Password" required>
       <label for="floatingPassword">Mot de Passe</label>
     </div>
-	<br />
+	
+	<?php 
+	/*if(isset($_POST['envoyer'])) {
+		if(!empty($_POST['email']) and !empty($_POST['mdp'])) {
+			$email 			= htmlspecialchars($_POST['email']);
+			$mdp 			= htmlspecialchars($_POST['mdp']);
+
+			if($admin){
+				$_SESSION['zWupjTBoui6o91iNt'] = $admin;
+
+				header("Location: admin/");
+			} else {
+				echo "Probleme de connexion";
+			}
+		} 
+	}*/
+	if(isset($_GET['erreur'])){
+		$err = $_GET['erreur'];
+		if($err==1 || $err==2)
+		echo "<p style='color:red; display: flex; align-items: center; justify-content: center; margin: 5% 0;'>Utilisateur ou mot de passe incorrect</p>";
+		}
+
+	?>
+	
     <input class="btn btn-primary w-100 py-2" name="envoyer" type="submit" value="Se connecter">
   </form>
 </main>
@@ -176,25 +199,3 @@
 </body>
 </html>
 
-<?php 
-/*if(isset($_POST['envoyer'])) {
-	if(!empty($_POST['email']) and !empty($_POST['mdp'])) {
-		$email 			= htmlspecialchars($_POST['email']);
-		$mdp 			= htmlspecialchars($_POST['mdp']);
-
-		if($admin){
-			$_SESSION['zWupjTBoui6o91iNt'] = $admin;
-
-			header("Location: admin/");
-		} else {
-			echo "Probleme de connexion";
-		}
-	} 
-}*/
-if(isset($_GET['erreur'])){
-	$err = $_GET['erreur'];
-	if($err==1 || $err==2)
-	echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
-	}
-
-?>
