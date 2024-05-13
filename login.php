@@ -157,19 +157,19 @@
     </div>
 
 <main class="form-signin w-100 m-auto">
-  <form method="post">
+  <form action="config/verification.php" method="post">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
-      <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
       <label for="floatingInput">Addresse e-mail</label>
     </div>
     <div class="form-floating">
-      <input type="password" name="mdp" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" name="mdp" class="form-control" id="floatingPassword" placeholder="Password" required>
       <label for="floatingPassword">Mot de Passe</label>
     </div>
 	<br />
-    <button class="btn btn-primary w-100 py-2" name="envoyer" type="submit">Connexion</button>
+    <input class="btn btn-primary w-100 py-2" name="envoyer" type="submit" value="Se connecter">
   </form>
 </main>
 
@@ -177,12 +177,22 @@
 </html>
 
 <?php 
-if(isset($_POST['envoyer'])) {
+/*if(isset($_POST['envoyer'])) {
 	if(!empty($_POST['email']) and !empty($_POST['mdp'])) {
-		$email 		= htmlspecialchars($_POST['email']);
-		$password 	= htmlspecialchars($_POST['mdp']);
-
-		$admin = getAdmin($email, $password);
+		// connexion à la base de données
+		$db_username 	= 'root';
+		$db_password 	= '';
+		$db_name 		= 'toutenunshop';
+		$db_host 		= 'localhost';
+		$access 		= mysqli_connect($db_host, $db_username, $db_password,$db_name)
+		or die('could not connect to database');
+		//	$email 			= htmlspecialchars($_POST['email']);
+		//	$mdp 			= htmlspecialchars($_POST['mdp']);
+		// on applique les deux fonctions mysqli_real_escape_string et htmlspecialchars
+		// pour éliminer toute attaque de type injection SQL et XSS
+		$email	= mysqli_real_escape_string($access,htmlspecialchars($_POST['email'])); 
+		$mdp	= mysqli_real_escape_string($access,htmlspecialchars($_POST['mdp']));
+		$admin	= getAdmin($email, $mdp);
 
 		if($admin){
 			$_SESSION['zWupjTBoui6o91iNt'] = $admin;
@@ -192,6 +202,11 @@ if(isset($_POST['envoyer'])) {
 			echo "Probleme de connexion";
 		}
 	} 
-}
+}*/
+if(isset($_GET['erreur'])){
+	$err = $_GET['erreur'];
+	if($err==1 || $err==2)
+	echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
+	}
 
 ?>
