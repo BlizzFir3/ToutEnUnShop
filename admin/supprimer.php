@@ -18,11 +18,33 @@
 	<title>Ajout de produit</title>
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+	<link href="../assets/css/sign-in.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script src="../assets/js/color-modes.js"></script>
 </head>
-<bodyclass="bg-body-tertiary">
+<body class="bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="index.php">Espace administrateur</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="index.php">Ajouter</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" style="font-weight: bold;" href="supprimer.php">Supprimer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"href="afficher.php">Produits</a>
+        </li>
+      </ul>
+        <a class="btn btn-outline-danger" onclick="return confirm('Êtes-vous sure de vouloir vous déconnecter?');" href="logout.php">Se déconnecter</a>
+    </div>
+  </div>
+</nav>
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -133,7 +155,7 @@
 				<label for="exampleInputPassword1" class="form-label">Identifiant du produit</label>
 				<input type="number" step="0.01" class="form-control" name="idProduit" required>
 			</div>
-			<button type="submit" name="valider" class="btn btn-primary">Supprimer le produit</button>
+			<button type="submit" name="valider" class="btn btn-danger">Supprimer le produit</button>
 		</form>
 	  </div>
 	  <br></br>
