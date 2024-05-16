@@ -4,6 +4,8 @@
 		header("Location: ../login.php");
 	}
 	require("../config/commandes.php");
+
+	$mesProduits=afficher();
 ?>
 
 <!DOCTYPE html>
@@ -12,10 +14,11 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Ajout de produit</title>
+	<title>Tout les produits</title>
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<link href="../assets/css/sign-in.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script src="../assets/js/color-modes.js"></script>
 </head>
@@ -148,25 +151,32 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-		<form method="post">
-			<div class="mb-3">
-				<label for="exampleInputEmail1" class="form-label">Lien de l'image</label>
-				<input type="text" class="form-control" name="image" required>
-			</div>
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Nom du produit</label>
-				<input type="name" class="form-control" name="nom" required>
-			</div>
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Prix</label>
-				<input type="number" step="0.01" class="form-control" name="prix" required>
-			</div>
-			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Description</label>
-				<textarea class="form-control" name="description" required></textarea>
-			</div>
-			<button type="submit" name="valider" class="btn btn-success">Ajouter le produit</button>
-		</form>
+	  <table class="table table-hover table-striped">
+		<thead>
+			<tr>
+			<th scope="col">Image</th>
+			<th scope="col">Nom</th>
+			<th scope="col">Prix</th>
+			<th scope="col">Description</th>
+			<th scope="col">Editer</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach($mesProduits as $unProduit): ?>
+			<tr>
+				<th class="align-middle" scope="row"><img src="<?= $unProduit->image ?>" width="100" height="100"/></th>
+				<td class="align-middle"><?= $unProduit->nom ?></td>
+				<td class="align-middle" style="font-weight: bold; color: green;"><?= $unProduit->prix ?>€</td>
+				<td class="align-middle"><?= substr($unProduit->description, 0, 100) ?>...</td>
+				<td class="align-middle">
+					<a href="editer.php?pdt=<?= $unProduit->id ?>">
+						<i class="fa fa-pen" style="font-size: 20px; color: blueviolet;"></i>
+					</a>
+				</td>
+			</tr>
+	  	<?php endforeach; ?>
+		</tbody>
+	  </table>
 	  </div>
 	</div>
 </div>
@@ -175,21 +185,6 @@
 
 <?php
 
-	if(isset($_POST['valider'])) {
-		if(isset($_POST['image']) and isset($_POST['nom']) and isset($_POST['prix']) and isset($_POST['description'])) {
-			if(!empty($_POST['image']) and !empty($_POST['nom']) and !empty($_POST['prix']) and !empty($_POST['description'])) {
-				$image			= htmlspecialchars(strip_tags($_POST['image']));
-				$nom 			= htmlspecialchars(strip_tags($_POST['nom']));
-				$prix 			= htmlspecialchars(strip_tags($_POST['prix']));
-				$description	= htmlspecialchars(strip_tags($_POST['description']));
 
-				try {
-					ajouter($image, $nom, $prix, $description);
-				} catch (Exception $e) {
-					echo 'ERROR: '. $e->getMessage();
-				}
-			}
-		}
-	}
 
 ?>
