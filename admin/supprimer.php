@@ -150,24 +150,26 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-		<form method="post">
+		<!--- <form method="post">
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Identifiant du produit</label>
 				<input type="number" step="0.01" class="form-control" name="idProduit" required>
 			</div>
 			<button type="submit" name="valider" class="btn btn-danger">Supprimer le produit</button>
-		</form>
+		</form>  --->
 	  </div>
 	  <br></br>
 	  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 		<?php foreach($mesProduits as $unProduit): ?>
-				<div class="col">
+				<div class="col stretch">
 				<div class="card shadow-sm">
 					<title><?= $unProduit->nom ?></title>
 					<img src="<?= $unProduit->image ?>" width="200" height="200"/>
 					<div class="card-body">
 					<p class="bold"><?= $unProduit->nom ?></p>
-					<p class="center">id = <?= $unProduit->id?></p>
+					<p class="center"><?= substr($unProduit->description, 0, 70)?>...</p>
+					<a href="suppression.php?id=<?= $unProduit->id ?>">
+					<button name="valider" type="button" class="btn btn-danger">Supprimer le produit</button></a>
 					</div>
 				</div>
 				</div>
@@ -177,21 +179,3 @@
 </div>
 </body>
 </html>
-
-<?php
-
-	if(isset($_POST['valider'])) {
-		if(isset($_POST['idProduit'])) {
-			if(!empty($_POST['idProduit']) and is_numeric($_POST['idProduit'])) {
-				$idProduit = htmlspecialchars(strip_tags($_POST['idProduit']));
-
-				try {
-					supprimer($idProduit);
-				} catch (Exception $e) {
-					echo 'ERROR: '. $e->getMessage();
-				}
-			}
-		}
-	}
-
-?>

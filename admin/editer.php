@@ -1,4 +1,5 @@
 <?php
+	ob_start();
 	session_start();
 	if (!isset($_SESSION["zWupjTBoui6o91iNt"]) || empty($_SESSION["zWupjTBoui6o91iNt"])){
 		header("Location: ../login.php");
@@ -7,7 +8,10 @@
 	if(!isset($_GET['pdt']) || empty($_GET['pdt']) || !is_numeric($_GET['pdt'])){
 			header("Location: afficher.php");
 	}
+
 	require("../config/commandes.php");
+	$id 			= $_GET['pdt'];
+	$Produits 		= getProduit($id);
 ?>
 
 <!DOCTYPE html>
@@ -148,32 +152,35 @@
       </ul>
     </div>
 
+
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
-
+	<?php foreach ($Produits as $Produit): ?>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 		<form method="post">
 			<div class="mb-3">
 				<label for="exampleInputEmail1" class="form-label">Lien de l'image</label>
-				<input type="text" class="form-control" name="image" required>
+				<input type="text" class="form-control" name="image" value="<?= $Produit->image ?>" required>
 			</div>
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Nom du produit</label>
-				<input type="name" class="form-control" name="nom" required>
+				<input type="name" class="form-control" name="nom" value="<?= $Produit->nom ?>" required>
 			</div>
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Prix</label>
-				<input type="number" step="0.01" class="form-control" name="prix" required>
+				<input type="number" step="0.01" class="form-control" name="prix" value="<?= $Produit->prix ?>" required>
 			</div>
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Description</label>
-				<textarea class="form-control" name="description" required></textarea>
+				<textarea class="form-control" name="description" required><?= $Produit->description ?></textarea>
 			</div>
-			<button type="submit" name="valider" class="btn btn-success">Ajouter le produit</button>
+			<button type="submit" name="valider" onclick="return confirm('Êtes-vous sure de vouloir modifier ce produit?');" class="btn btn-warning">Modifier le produit</button>
 		</form>
 	  </div>
+	<?php endforeach; ?>
 	</div>
 </div>
+
 </body>
 </html>
 
@@ -188,7 +195,8 @@
 				$description	= htmlspecialchars(strip_tags($_POST['description']));
 
 				try {
-					ajouter($image, $nom, $prix, $description);
+					modifierProduit($id, $image, $nom, $prix, $description);
+					header("Location: afficher.php");
 				} catch (Exception $e) {
 					echo 'ERROR: '. $e->getMessage();
 				}
