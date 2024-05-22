@@ -21,6 +21,12 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script src="../assets/js/color-modes.js"></script>
+	<script language="javascript" type='text/javascript'>
+    function session(){
+        window.location="logout.php"; //page de déconnexion
+    }
+    setTimeout("session()",300000); 
+</script>
 </head>
 <body class="bg-body-tertiary">
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
