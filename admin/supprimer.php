@@ -32,13 +32,13 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="index.php">Ajouter</a>
+          <a class="nav-link" href="ajouter.php">Ajouter</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" style="font-weight: bold;" href="supprimer.php">Supprimer</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"href="afficher.php">Produits</a>
+          <a class="nav-link"href="index.php">Produits</a>
         </li>
       </ul>
         <a class="btn btn-outline-danger" onclick="return confirm('Êtes-vous sure de vouloir vous déconnecter?');" href="logout.php">Se déconnecter</a>
