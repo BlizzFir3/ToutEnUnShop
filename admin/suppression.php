@@ -9,8 +9,7 @@
 		header("Location: supprimer.php");
 	}
 	require("../config/commandes.php");
-	
-	$mesProduits=afficher();
+
 	$idProduit = htmlspecialchars(strip_tags($_GET['id']));
 
 	try {
@@ -19,5 +18,3 @@
 	} catch (Exception $e) {
 		echo 'ERROR: '. $e->getMessage();
 	}
-
-?>

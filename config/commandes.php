@@ -27,19 +27,6 @@
 			$req->execute([$id]);
 		}
 	}
-
-	/*function modifier($image, $nom, $prix, $description, $id) {
-		if (require("connexion.php")) {
-			$req = $access->prepare("INSERT INTO produits (image, nom, prix, description) VALUES (:image, :nom, 
-				:prix, :description)");
-			$req->execute(array(":image" 		=> $image,
-								":nom" 			=> $nom,
-								":prix" 		=> $prix,
-								":description" 	=> $description));
-			$req->closeCursor();
-		}
-	}*/
-
 	function getAdmin($email, $mdp) {
 		if (require("connexion.php")) {
 			$req = $access->prepare("SELECT * FROM admin WHERE email = :email AND mdp = :mdp");
