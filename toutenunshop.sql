@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 24 mai 2024 à 12:41
+-- Généré le : lun. 27 mai 2024 à 10:28
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -34,14 +34,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `mdp` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `admin`
 --
 
 INSERT INTO `admin` (`id`, `pseudo`, `email`, `mdp`) VALUES
-(1, 'Quent1', 'quentheritier@gmail.com', 'motDePasse');
+(2, 'admin', 'admin@admin.com', 'admin2024');
 
 -- --------------------------------------------------------
 
